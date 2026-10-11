@@ -1,13 +1,20 @@
 import Link from "next/link";
 import Image from "next/image";
-import { getProjectCatalog } from "@/lib/project-catalog";
+import { getHomepageProjects } from "@/lib/project-catalog";
 import { experiences, profile } from "@/lib/profile";
 import { ProjectCard } from "@/components/project-card";
-import { OutArrow, DownArrow, RightArrow } from "@/components/icons";
+import {
+  OutArrow,
+  DownArrow,
+  RightArrow,
+  EmailIcon,
+  GitHubLogo,
+  LinkedInLogo,
+} from "@/components/icons";
 
 export const revalidate = 3600;
 export default async function Home() {
-  const featured = (await getProjectCatalog()).filter((p) => p.featured);
+  const featured = await getHomepageProjects();
   return (
     <main id="main">
       <section className="hero wrap" aria-labelledby="hero-title">
@@ -62,7 +69,7 @@ export default async function Home() {
         </div>
         <div>
           <span>Currently exploring</span>
-          <strong>Agentic AI & applied machine learning</strong>
+          <strong>Agentic AI & Product Development</strong>
         </div>
       </div>
 
@@ -101,8 +108,8 @@ export default async function Home() {
             <p className="eyebrow">02 / Experience</p>
             <h2 id="experience-heading">Experience</h2>
             <p>
-              From healthcare AI to an early-stage venture, I’ve worked at the
-              intersection of technology, people, and business.
+              From Agentic AI in healthcare to an early-stage venture, I’ve
+              worked at the intersection of technology, people, and business.
             </p>
             <Link href="/resume" className="text-link">
               View resume <OutArrow />
@@ -154,8 +161,8 @@ export default async function Home() {
             <span className="capability-number">01</span>
             <h3>AI & Machine Learning</h3>
             <p>
-              Model evaluation, agentic AI, prompt engineering, and supervised
-              learning.
+              Model evaluation, agentic AI, supervised learning and prompt
+              engineering.
             </p>
             <Link href="/projects/credit-risk" className="text-link">
               Explore the ML project <OutArrow size={15} />
@@ -174,7 +181,7 @@ export default async function Home() {
           </article>
           <article>
             <span className="capability-number">03</span>
-            <h3>Product Development & analytics</h3>
+            <h3>Product Development & Analytics</h3>
             <p>
               Customer discovery, GTM, financial modelling, and data analytics.
             </p>
@@ -195,23 +202,26 @@ export default async function Home() {
         </div>
         <div className="about-copy">
           <h2 id="about-heading">
-            A technical foundation.
-            <br />A product perspective.
+            Technical foundation.
+            <br />
+            Product perspective.
           </h2>
           <p>
-            I’m studying Information Systems at SMU, majoring in Business
-            Analytics and Product Development, with expected graduation in 2028.
-            I enjoy connecting technical decisions with the people and problems
-            behind them.
+            I’m studying Information Systems at SMU, majoring in Product
+            Development and Business Analytics, with expected graduation in
+            2028. I bridge the gap between complex problems and technical
+            solutions by grounding product decisions in user needs and
+            real-world impact.
           </p>
           <p>
             Outside of work and school, you’ll find me travelling, playing
-            tennis, or taking on a Hyrox challenge.
+            tennis, or trying out new food places{" "}
+            <i>(if you have any recommendations let me know)!</i>
           </p>
           <div className="about-facts">
-            <span>Global Impact Scholar</span>
-            <span>Dean’s List</span>
-            <span>SMU · Class of 2028</span>
+            <span>Sports Enthusiast</span>
+            <span>Travelling</span>
+            <span>Food Reviewer</span>
           </div>
         </div>
       </section>
@@ -234,16 +244,16 @@ export default async function Home() {
             </a>
           </div>
           <div className="contact-bottom">
-            <p>Open to AI and software engineering internship opportunities.</p>
+            <p>Open to AI and software engineering opportunities.</p>
             <div>
               <a href={`mailto:${profile.email}`}>
-                Email me <OutArrow />
+                Email me <EmailIcon />
               </a>
               <a href={profile.github} target="_blank" rel="noreferrer">
-                GitHub <OutArrow />
+                GitHub <GitHubLogo />
               </a>
               <a href={profile.linkedin} target="_blank" rel="noreferrer">
-                LinkedIn <OutArrow />
+                LinkedIn <LinkedInLogo />
               </a>
             </div>
           </div>

@@ -5,9 +5,7 @@ export function Footer() {
     <footer className="wrap footer">
       <p>© {new Date().getFullYear()} Bryan Chang</p>
       <p>Built with intention. Based in Singapore.</p>
-      <a href={profile.linkedin} target="_blank" rel="noreferrer">
-        LinkedIn <OutArrow size={14} />
-      </a>
+      
     </footer>
   );
 }

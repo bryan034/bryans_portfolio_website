@@ -64,3 +64,16 @@ export const getProjectCatalog = cache(async (): Promise<Project[]> => {
 export async function getCatalogProject(slug: string) {
   return (await getProjectCatalog()).find((p) => p.slug === slug);
 }
+
+export async function getHomepageProjects() {
+  const projects = await getProjectCatalog();
+  // Homepage selection is curated independently of GitHub's featured setting.
+  // Match Foodfolio by repository so its title or generated slug can change.
+  return [
+    projects.find(
+      (p) => p.repository?.toLowerCase() === "bryan034/food_account_outreach",
+    ),
+    projects.find((p) => p.slug === "odoo-azure"),
+    projects.find((p) => p.slug === "credit-risk"),
+  ].filter((p): p is Project => p !== undefined);
+}

@@ -55,7 +55,7 @@ No public deployment has been configured. A container running on your computer i
 ## How the site works
 
 1. `src/lib/projects.ts` validates curated project records. `src/lib/project-catalog.ts` merges them with public GitHub repositories owned by `bryan034` and tagged `portfolio`, deduplicating curated repository entries.
-2. Home, Projects, Resume, and detail routes load this server-side catalog. Curated records retain their order; discovered repositories follow in alphabetical order and are featured on the homepage.
+2. Home, Projects, Resume, and detail routes load this server-side catalog. The homepage explicitly selects Foodfolio, ERP in the cloud, and credit risk in that order through `getHomepageProjects()`. This selection takes priority over repository-authored featured settings; all visible projects remain in the full collection.
 3. `src/lib/case-studies.ts` maps curated slugs to trusted local MDX. Discovered projects read their JSON metadata and Markdown article from `bryans_portfolio`; a basic React detail page is used when the article is absent. Remote MDX is never executed.
 4. GitHub repository lists are paginated and cached for one hour, with five-second request timeouts. Authored JSON and Markdown files are fetched without caching in development (refresh the page after a push), and cached for one hour in production. Revalidation is request-driven, not a background schedule. New dynamic project routes are permitted after the production build, so new tagged repositories do not require rebuilding the website.
 5. GitHub failures leave curated projects available. Missing or broken covers use a themed placeholder.

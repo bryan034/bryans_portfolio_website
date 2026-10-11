@@ -835,9 +835,41 @@ details[open] .expand-symbol:after {
 .prose p + p {
   margin-top: 16px;
 }
-.prose ul {
+.prose ul,
+.prose ol {
   padding-left: 20px;
   margin: 16px 0;
+}
+.prose ul,
+.resume-page article ul {
+  list-style: none;
+  padding-left: 0;
+}
+.prose ul > li,
+.resume-page article ul > li {
+  position: relative;
+  padding-left: 25px;
+}
+.prose ul > li::before,
+.resume-page article ul > li::before {
+  content: "";
+  position: absolute;
+  left: 3px;
+  top: 0.6em;
+  width: 7px;
+  height: 7px;
+  border-top: 1.5px solid var(--brown);
+  border-right: 1.5px solid var(--brown);
+  transform: rotate(45deg);
+}
+.prose ol,
+.resume-page article ol {
+  list-style-type: decimal;
+  list-style-position: outside;
+}
+.prose li::marker,
+.resume-page article li::marker {
+  color: var(--brown);
 }
 .prose li + li {
   margin-top: 9px;
