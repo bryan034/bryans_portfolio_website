@@ -18,6 +18,8 @@ export const projectSchema = z.object({ //defines and exports rules for a proj o
   order: z.number().int(), //z.number() is the type check for js number type. .int() ensures number is an integer (whole number)
   cover: z.union([z.string().startsWith("/"), z.url({ protocol: /^https$/ })]),
   source: z.enum(["curated", "github"]).optional(),
+  caseStudy: z.string().optional(),
+  repositoryBranch: z.string().optional(),
   coverAlt: z.string().min(1),
   coverCaption: z.string().min(1).optional(),
   repository: z.string().regex(repositoryIdPattern).optional(), //optional github repo identifier that must match the imported pattern when supplied
@@ -85,7 +87,7 @@ const records: Project[] = [
     featured: true,
     visible: true,
     order: 3,
-    cover: "/images/odoo-azure.svg",
+    cover: "/images/odoo-azure.jpg",
     coverAlt:
       "Conceptual illustration of Odoo ERP, Azure infrastructure, and a connected database; not a project screenshot.",
     contributions: [

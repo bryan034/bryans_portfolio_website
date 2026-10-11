@@ -56,8 +56,8 @@ No public deployment has been configured. A container running on your computer i
 
 1. `src/lib/projects.ts` validates curated project records. `src/lib/project-catalog.ts` merges them with public GitHub repositories owned by `bryan034` and tagged `portfolio`, deduplicating curated repository entries.
 2. Home, Projects, Resume, and detail routes load this server-side catalog. Curated records retain their order; discovered repositories follow in alphabetical order and are featured on the homepage.
-3. `src/lib/case-studies.ts` maps curated slugs to trusted local MDX. Discovered projects use a basic React detail page with their GitHub description, language/topics, and source link; remote MDX is never executed.
-4. GitHub repository lists are paginated and cached for one hour, with five-second request timeouts. Revalidation is request-driven, not a background schedule. New dynamic project routes are permitted after the production build, so new tagged repositories do not require rebuilding the website.
+3. `src/lib/case-studies.ts` maps curated slugs to trusted local MDX. Discovered projects read their JSON metadata and Markdown article from `bryans_portfolio`; a basic React detail page is used when the article is absent. Remote MDX is never executed.
+4. GitHub repository lists are paginated and cached for one hour, with five-second request timeouts. Authored JSON and Markdown files are fetched without caching in development (refresh the page after a push), and cached for one hour in production. Revalidation is request-driven, not a background schedule. New dynamic project routes are permitted after the production build, so new tagged repositories do not require rebuilding the website.
 5. GitHub failures leave curated projects available. Missing or broken covers use a themed placeholder.
 6. Screenshot enlargement and resume printing are the interactive components; experience uses native disclosures.
 
@@ -65,11 +65,12 @@ No public deployment has been configured. A container running on your computer i
 
 1. Publish a public repository under `bryan034` (forks are excluded).
 2. Add the `portfolio` topic in the repository's About settings.
-3. Add `portfolio_cover_photo/cover.png` at the repository root and push it to the default branch. The spelling and case must match exactly.
-4. Set the GitHub repository description to the summary you want displayed. The title is derived from its repository name; language and other topics supply the labels.
-5. The project appears after the next cache refresh. Removing the topic removes it after refresh. No local project record or MDX import is necessary.
+3. Add `bryans_portfolio/cover.png` at the repository root and push it to the default branch. The spelling and case must match exactly.
+4. Add `bryans_portfolio/portfolio.json` with `version: 1` and optional fields: title, summary, category, role, technologies, status, featured, visible, order, coverAlt, coverCaption, contributions, contributionConfirmed, demoUrl (HTTPS or null). Valid fields override GitHub defaults; invalid fields fall back independently.
+5. Add `bryans_portfolio/case-study.md` for the article. Plain Markdown, lists, links, images, and tables are supported; raw HTML and executable MDX are not. Relative links resolve within this folder on GitHub, and the standard four section headings receive sidebar anchors.
+6. The project appears after the next cache refresh. Removing the topic removes it after refresh. No local project record or MDX import is necessary.
 
-Discovered URLs include the repository ID to prevent collisions between similarly named repositories. These pages link to the README for detailed context rather than guessing personal contributions. The former manual Foodfolio and fault-report records and MDX imports have been removed.
+Discovered URLs include the repository ID to prevent collisions between similarly named repositories. These pages display repository-authored content, with GitHub metadata as fallback. The former manual Foodfolio and fault-report records and MDX imports have been removed.
 
 For curated work without a repository, or work owned by another account, continue editing `src/lib/projects.ts` and its MDX file. Add new local case-study imports in `src/lib/case-studies.ts`.
 

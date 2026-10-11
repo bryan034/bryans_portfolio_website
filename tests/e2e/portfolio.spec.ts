@@ -45,9 +45,8 @@ test("all case studies render and missing slugs return 404", async ({
     const response = await page.goto(link);
     expect(response?.status()).toBe(200);
     await expect(page.locator("#overview")).toBeVisible();
-    await expect(page.locator("#evidence")).toHaveText(
-      "Evidence & limitations",
-    );
+    await expect(page.locator("#evidence")).toHaveCount(0);
+    await expect(page.locator("#next")).toHaveText("Further development");
     expect(
       await page.evaluate(
         () => document.documentElement.scrollWidth <= window.innerWidth,

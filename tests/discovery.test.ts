@@ -37,12 +37,12 @@ describe("portfolio discovery", () => {
     const results = await getPortfolioRepositories();
     expect(results).toHaveLength(1);
     expect(results[0].cover).toBe(
-      "https://raw.githubusercontent.com/bryan034/example_project/main/portfolio_cover_photo/cover.png",
+      "https://raw.githubusercontent.com/bryan034/example_project/main/bryans_portfolio/cover.png",
     );
   });
   it("fetches later pages and validates the cover URL", async () => {
     const cover =
-      "https://raw.githubusercontent.com/bryan034/example_project/main/portfolio_cover_photo/cover.png";
+      "https://raw.githubusercontent.com/bryan034/example_project/main/bryans_portfolio/cover.png";
     const fetch = vi
       .fn()
       .mockResolvedValueOnce(
@@ -82,7 +82,7 @@ describe("portfolio discovery", () => {
         ),
     );
     expect((await getPortfolioRepositories())[0].cover).toBe(
-      "https://raw.githubusercontent.com/bryan034/example_project/main/portfolio_cover_photo/cover.png",
+      "https://raw.githubusercontent.com/bryan034/example_project/main/bryans_portfolio/cover.png",
     );
   });
   it("merges discovered projects with curated records without requiring MDX", async () => {
@@ -97,7 +97,7 @@ describe("portfolio discovery", () => {
     const discovered = projects.find((p) => p.repository === repo.full_name)!;
     expect(discovered.slug).toBe("github-example-project-42");
     expect(discovered.featured).toBe(true);
-    expect(discovered.cover).toContain("/portfolio_cover_photo/cover.png");
+    expect(discovered.cover).toContain("/bryans_portfolio/cover.png");
     expect(discovered.source).toBe("github");
     expect(projects.some((p) => p.slug === "credit-risk")).toBe(true);
     expect(

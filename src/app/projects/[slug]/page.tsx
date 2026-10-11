@@ -96,7 +96,6 @@ export default async function ProjectPage({
           <a href="#overview">Overview</a>
           <a href="#contribution">My contribution & context</a>
           <a href="#technical">Technical approach</a>
-          <a href="#evidence">Evidence & limitations</a>
           <a href="#next">Further development</a>
           {!project.contributionConfirmed && project.source !== "github" && (
             <p className="contribution-note">

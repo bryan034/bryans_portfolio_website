@@ -90,7 +90,7 @@ function getRepositoryCover(
 ) {
   // This fixed public path needs no GitHub Contents API request. The image
   // component falls back to the themed placeholder if the file is absent.
-  return `https://raw.githubusercontent.com/bryan034/${encodeURIComponent(repository.name)}/${encodeURIComponent(repository.default_branch)}/portfolio_cover_photo/cover.png`;
+  return `https://raw.githubusercontent.com/bryan034/${encodeURIComponent(repository.name)}/${encodeURIComponent(repository.default_branch)}/bryans_portfolio/cover.png`;
 }
 
 export async function getPortfolioRepositories(): Promise<
