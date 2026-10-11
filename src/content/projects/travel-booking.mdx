@@ -1,0 +1,41 @@
+<h2 id="overview">Overview</h2>
+
+TravelLust is a team-built travel-planning platform for organising trips and working with flights, hotels, attractions, and bookings. It was developed for SMU's IS213 Enterprise Solution Development module.
+
+The platform uses separate services for its domains, with Python/Flask backends, REST APIs, Docker, Supabase, and RabbitMQ. The shared frontend uses React and TypeScript. These are platform technologies; my personal ownership is described below. [Project documentation](https://github.com/curryriiiice/IS213-travellust#readme).
+
+<h2 id="contribution">My contribution & project context</h2>
+
+**My ownership: microservice architecture and the attraction workflow.** I worked on the microservice architecture and implemented atomic and composite services for adding, booking, and planning attractions.
+
+- **Architecture:** defining how the system's service components fit together.
+- **Atomic services:** implementing the attraction-related operations used as building blocks.
+- **Composite services:** coordinating those building blocks into attraction booking and planning workflows.
+
+Flights, hotels, collaboration, notifications, and the shared frontend are part of the wider team's product. Their presence in the platform does not imply that I implemented all of them.
+
+<h2 id="technical">Technical approach</h2>
+
+### Adding an attraction
+
+The attraction service accepts a manually entered attraction or an item from the catalogue. It checks that the trip exists, creates the attraction, and adds its identifier to the trip. The catalogue and attraction data use Supabase. [Attraction service documentation](https://github.com/curryriiiice/IS213-travellust/blob/main/my-monorepo/apps/attractions/README.md).
+
+### Coordinating a booking
+
+The booking composite checks that the payer and ticket holders belong to the trip, retrieves the attraction, and calls the booked-ticket service. It validates returned records before reporting success, and publishes booking outcomes to RabbitMQ. Its documented simulated-failure path helps demonstrate unsuccessful bookings. [Booking service documentation](https://github.com/curryriiiice/IS213-travellust/blob/main/my-monorepo/apps/book-attractions/README.md).
+
+### Planning and a concrete trade-off
+
+The attraction-planning component validates required fields and trip membership before calling the attraction service. After saving, it publishes a Redis event for real-time updates. If event publishing fails, it logs the failure and retains the successful save. This prioritises persisted data over immediate notification delivery, while leaving a possible gap in the real-time update. [Planning implementation](https://github.com/curryriiiice/IS213-travellust/blob/main/my-monorepo/apps/plan_service/apps/plan_service/services/attraction_plan_service.py).
+
+These flows illustrate the distinction between domain operations and coordination across services. Docker and Compose package the platform's service processes for local operation. [Deployment overview](https://github.com/curryriiiice/IS213-travellust#readme).
+
+<h2 id="evidence">Evidence & limitations</h2>
+
+The public repository provides documentation, service code, and attraction-service test files. My contribution to architecture and attraction services is confirmed directly. The portfolio review has not executed the travel platform's tests or verified a running Azure deployment.
+
+The cover is a simplified concept illustration, not the exact deployed topology. No live booking service, load benchmark, or production availability claim is presented.
+
+<h2 id="next">Further development</h2>
+
+A recorded attraction flow would make the implementation easier to inspect without running the whole platform. A useful engineering follow-up is to assess recovery and event delivery when a save succeeds but its notification fails.
