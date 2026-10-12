@@ -27,7 +27,7 @@ export const experiences = [
   {
     company: "SportsFinder",
     role: "Co-founder",
-    date: "Jun 2023 — Jun 2025",
+    date: "Jun 2023 - Jun 2025",
     type: "Product & entrepreneurship",
     summary:
       "Connecting people through sport, finding your next game through the click of a button.",
@@ -39,7 +39,7 @@ export const experiences = [
   {
     company: "SEA Bridge",
     role: "Analyst",
-    date: "May — Aug 2025",
+    date: "May - Aug 2025",
     type: "Consulting",
     summary:
       "Worked with a regional team on go-to-market strategy and business development for a book publisher in Bangkok.",
@@ -50,7 +50,7 @@ export const experiences = [
   {
     company: "Covenant Capital",
     role: "Investment Analyst",
-    date: "Jan — May 2024",
+    date: "Jan - May 2024",
     type: "Investment Analytics",
     summary:
       "Bringing structured analysis to investment research and portfolio construction.",
