@@ -55,11 +55,11 @@ No public deployment has been configured. A container running on your computer i
 ## How the site works
 
 1. `src/lib/projects.ts` validates curated project records. `src/lib/project-catalog.ts` merges them with public GitHub repositories owned by `bryan034` and tagged `portfolio`, deduplicating curated repository entries.
-2. Home, Projects, Resume, and detail routes load this server-side catalog. The homepage explicitly selects Foodfolio, ERP in the cloud, and credit risk in that order through `getHomepageProjects()`. This selection takes priority over repository-authored featured settings; all visible projects remain in the full collection.
+2. Home, Projects, and detail routes load this server-side catalog. The homepage explicitly selects Foodfolio, ERP in the cloud, and credit risk in that order through `getHomepageProjects()`. This selection takes priority over repository-authored featured settings; all visible projects remain in the full collection.
 3. `src/lib/case-studies.ts` maps curated slugs to trusted local MDX. Discovered projects read their JSON metadata and Markdown article from `bryans_portfolio`; a basic React detail page is used when the article is absent. Remote MDX is never executed.
 4. GitHub repository lists are paginated and cached for one hour, with five-second request timeouts. Authored JSON and Markdown files are fetched without caching in development (refresh the page after a push), and cached for one hour in production. Revalidation is request-driven, not a background schedule. New dynamic project routes are permitted after the production build, so new tagged repositories do not require rebuilding the website.
 5. GitHub failures leave curated projects available. Missing or broken covers use a themed placeholder.
-6. Screenshot enlargement and resume printing are the interactive components; experience uses native disclosures.
+6. Screenshot enlargement is the interactive component; experience uses native disclosures.
 
 ## Add a GitHub project automatically
 
@@ -76,7 +76,7 @@ For curated work without a repository, or work owned by another account, continu
 
 An optional server-only `GITHUB_TOKEN` raises API limits. Native development reads `.env.local`; Compose reads a shell variable or `.env`. Never use a `NEXT_PUBLIC_` token. The portfolio requires no database.
 
-Profile and experience text live in `src/lib/profile.ts`. Design tokens and responsive styles live in `src/app/globals.css`. A plain sans-serif resume at `/resume` can be printed or saved as a PDF. The original résumé is not copied into public assets because it contains a phone number.
+Profile and experience text live in `src/lib/profile.ts`. Design tokens and responsive styles live in `src/app/globals.css`. The original résumé is not copied into public assets because it contains a phone number.
 
 ## Content review before public release
 
@@ -103,4 +103,4 @@ Production builds use Next.js’s supported Webpack compiler because the local s
 
 ## Visual design
 
-The design takes inspiration from Revolut’s bold sans-serif typography and simple controls while retaining Bryan’s cream, sage, warm-brown, and dark-brown palette. Inter is self-hosted through `@fontsource-variable/inter`; no proprietary Revolut font is included. The supplied portrait lives at `public/images/bryan-chang.jpg` and is displayed in a circular CSS frame at the left of the hero. To adjust the crop, change `.hero-portrait img` in `src/app/globals.css`. The original photo file is preserved. GitHub is linked in the hero, navigation, contact section, and resume.
+The design takes inspiration from Revolut’s bold sans-serif typography and simple controls while retaining Bryan’s cream, sage, warm-brown, and dark-brown palette. Inter is self-hosted through `@fontsource-variable/inter`; no proprietary Revolut font is included. The supplied portrait lives at `public/images/bryan-chang.png` and is displayed in a circular CSS frame at the left of the hero. To adjust the crop, change `.hero-portrait img` in `src/app/globals.css`. The original photo file is preserved. GitHub is linked in the hero, navigation, and contact section. The resume page and its links have been removed.

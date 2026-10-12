@@ -1,11 +1,11 @@
 import { expect, test } from "@playwright/test";
-test("hirer can navigate from skills to project evidence and résumé", async ({
-  page,
-}) => {
+test("hirer can navigate from skills to project details", async ({ page }) => {
   await page.goto("/");
   await expect(page.getByRole("heading", { level: 1 })).toContainText(
     "Bryan Chang",
   );
+  const portrait = page.locator(".hero-portrait img");
+  await expect(portrait).toHaveAttribute("src", /bryan-chang(?:%2E|\.)png/);
   await page.getByRole("link", { name: "Explore the ML project" }).click();
   await expect(page).toHaveURL(/\/projects\/credit-risk$/);
   await expect(
@@ -18,20 +18,9 @@ test("hirer can navigate from skills to project evidence and résumé", async ({
   await page.getByRole("link", { name: "Back to projects" }).click();
   await expect(page.locator(".project-card").first()).toBeVisible();
   expect(await page.locator(".project-card").count()).toBeGreaterThanOrEqual(3);
-  await page
-    .getByRole("navigation")
-    .getByRole("link", { name: "Resume", exact: true })
-    .click();
-  await expect(
-    page.getByRole("heading", { name: "Bryan Chang", exact: true }),
-  ).toBeVisible();
-  await expect(
-    page.getByRole("button", { name: "Print / Save as PDF" }),
-  ).toBeVisible();
-  await page.screenshot({
-    path: `test-results/resume-${test.info().project.name}.png`,
-    fullPage: true,
-  });
+  await expect(page.locator('a[href="/resume"]')).toHaveCount(0);
+  const removed = await page.goto("/resume");
+  expect(removed?.status()).toBe(404);
 });
 test("all case studies render and missing slugs return 404", async ({
   page,

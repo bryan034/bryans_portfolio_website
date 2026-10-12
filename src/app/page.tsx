@@ -20,7 +20,7 @@ export default async function Home() {
       <section className="hero wrap" aria-labelledby="hero-title">
         <div className="hero-portrait">
           <Image
-            src="/images/bryan-chang.jpg"
+            src="/images/bryan-chang.png"
             alt="Bryan Chang"
             fill
             sizes="(max-width: 760px) 240px, (max-width: 1050px) 300px, 380px"
@@ -43,9 +43,6 @@ export default async function Home() {
             <a className="button button-dark" href="#work">
               View projects <DownArrow />
             </a>
-            <Link className="button button-outline" href="/resume">
-              Resume
-            </Link>
             <a
               className="text-link hero-github"
               href={profile.github}
@@ -111,9 +108,6 @@ export default async function Home() {
               From Agentic AI in healthcare to an early-stage venture, I’ve
               worked at the intersection of technology, people, and business.
             </p>
-            <Link href="/resume" className="text-link">
-              View resume <OutArrow />
-            </Link>
           </div>
           <div className="experience-list">
             {experiences.map((exp, index) => (

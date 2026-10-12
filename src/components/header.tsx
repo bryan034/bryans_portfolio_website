@@ -11,9 +11,6 @@ export function Header() {
         <Link href="/projects">Projects</Link>
         <Link href="/#experience">Experience</Link>
         <Link href="/#about">About</Link>
-        <Link href="/resume" className="resume-link">
-          Resume
-        </Link>
         <a href={profile.github} target="_blank" rel="noreferrer">
           GitHub <OutArrow size={14} />
         </a>

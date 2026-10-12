@@ -186,8 +186,7 @@ img {
 }
 .hero-portrait img {
   object-fit: cover;
-  object-position: 50% 10%;
-  transform: translateX(-6px) scale(1.04);
+  object-position: center;
 }
 .hero h1 {
   font-size: clamp(52px, 5.3vw, 78px);
@@ -840,18 +839,15 @@ details[open] .expand-symbol:after {
   padding-left: 20px;
   margin: 16px 0;
 }
-.prose ul,
-.resume-page article ul {
+.prose ul {
   list-style: none;
   padding-left: 0;
 }
-.prose ul > li,
-.resume-page article ul > li {
+.prose ul > li {
   position: relative;
   padding-left: 25px;
 }
-.prose ul > li::before,
-.resume-page article ul > li::before {
+.prose ul > li::before {
   content: "";
   position: absolute;
   left: 3px;
@@ -862,13 +858,11 @@ details[open] .expand-symbol:after {
   border-right: 1.5px solid var(--brown);
   transform: rotate(45deg);
 }
-.prose ol,
-.resume-page article ol {
+.prose ol {
   list-style-type: decimal;
   list-style-position: outside;
 }
-.prose li::marker,
-.resume-page article li::marker {
+.prose li::marker {
   color: var(--brown);
 }
 .prose li + li {
@@ -979,104 +973,6 @@ details[open] .expand-symbol:after {
 }
 .not-found .button {
   margin-top: 28px;
-}
-.resume-page {
-  max-width: 900px;
-  padding-block: 52px 74px;
-}
-.resume-label {
-  font-size: 15px;
-  font-weight: 500;
-  color: var(--muted);
-}
-.resume-page h1 {
-  font-size: 42px;
-  font-weight: 650;
-  letter-spacing: -1.4px;
-  line-height: 1.1;
-  margin-top: 16px;
-}
-.resume-page .page-intro {
-  font-size: 16px;
-  margin-top: 14px;
-}
-.resume-contact {
-  display: flex;
-  gap: 15px 22px;
-  flex-wrap: wrap;
-  margin-top: 20px;
-  font-size: 12px;
-}
-.resume-contact a:hover {
-  text-decoration: underline;
-}
-.resume-actions {
-  display: flex;
-  justify-content: space-between;
-  gap: 25px;
-  align-items: center;
-  margin-block: 30px;
-  font-size: 12px;
-  color: var(--muted);
-}
-.resume-page h2 {
-  font-size: 24px;
-  font-weight: 600;
-  letter-spacing: -0.6px;
-  border-top: 1px solid var(--line);
-  padding-top: 26px;
-  margin-top: 35px;
-  margin-bottom: 24px;
-}
-.resume-page article + article {
-  margin-top: 25px;
-}
-.resume-page h3 {
-  font-size: 16px;
-  font-weight: 600;
-  letter-spacing: -0.3px;
-  line-height: 1.5;
-}
-.resume-page .resume-entry-head {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-}
-.resume-page article p {
-  font-size: 15px;
-  color: var(--muted);
-  margin-top: 8px;
-}
-.resume-page article ul {
-  font-size: 14px;
-  line-height: 1.8;
-  color: var(--muted);
-  padding-left: 18px;
-}
-.resume-entry-head > span {
-  font-size: 12px;
-  color: var(--muted);
-  white-space: nowrap;
-  padding-top: 3px;
-}
-.resume-skills {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 23px;
-}
-.resume-skills article + article {
-  margin-top: 0;
-}
-.print-button {
-  background: none;
-  border: 1px solid var(--line);
-  padding: 10px 15px;
-  border-radius: 24px;
-  font-size: 12px;
-  white-space: nowrap;
-}
-.print-button:hover {
-  background: #b2ba9c30;
 }
 @media (max-width: 1050px) {
   .wrap {
@@ -1430,30 +1326,6 @@ details[open] .expand-symbol:after {
   .case-bottom .text-link {
     font-size: 11px;
   }
-  .resume-page {
-    padding-block: 36px 48px;
-  }
-  .resume-page h1 {
-    font-size: 34px;
-    letter-spacing: -1px;
-  }
-  .resume-page h2 {
-    font-size: 23px;
-  }
-  .resume-contact {
-    font-size: 12px;
-  }
-  .resume-actions {
-    align-items: start;
-    gap: 15px;
-  }
-  .resume-page .resume-entry-head {
-    flex-direction: column;
-    gap: 5px;
-  }
-  .resume-skills {
-    grid-template-columns: 1fr;
-  }
   .not-found {
     padding-block: 60px 90px;
   }
@@ -1502,54 +1374,7 @@ details[open] .expand-symbol:after {
   }
   .site-header,
   .footer,
-  .resume-actions,
-  .skip-link,
-  .resume-label {
+  .skip-link {
     display: none;
-  }
-  .resume-page {
-    width: 100%;
-    max-width: none;
-    padding: 0;
-  }
-  .resume-page h1 {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 30px;
-    margin-top: 0;
-    letter-spacing: -0.5px;
-  }
-  .resume-page h2 {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 18px;
-    letter-spacing: 0;
-    margin-top: 22px;
-    padding-top: 15px;
-    margin-bottom: 16px;
-  }
-  .resume-page article {
-    break-inside: avoid;
-  }
-  .resume-page article + article {
-    margin-top: 16px;
-  }
-  .resume-page h3 {
-    font-size: 13px;
-  }
-  .resume-page article p,
-  .resume-page article ul,
-  .resume-contact {
-    font-size: 10px;
-  }
-  .resume-contact {
-    margin-top: 10px;
-  }
-  .resume-skills {
-    gap: 12px;
-  }
-  .resume-page a {
-    color: inherit;
-  }
-  .resume-entry-head > span {
-    font-size: 10px;
   }
 }
