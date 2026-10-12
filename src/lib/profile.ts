@@ -13,7 +13,7 @@ export const experiences = [
   {
     company: "Synapxe",
     role: "Business Analyst for GenAI",
-    date: "Jun 2026 — present",
+    date: "Jun 2026 - present",
     type: "Applied AI",
     summary:
       "Supporting enterprise agentic AI delivery in Singapore healthcare.",
