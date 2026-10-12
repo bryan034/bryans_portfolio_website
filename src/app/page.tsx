@@ -33,7 +33,7 @@ export default async function Home() {
           </p>
           <h1 id="hero-title">Bryan Chang</h1>
           <p className="hero-subtitle">
-            Shipping Products. Scaling Intelligence.
+            Shipping Products. Leveraging AI.
           </p>
           <p className="hero-description">
             Information Systems undergraduate at SMU, graduating in 2028.
