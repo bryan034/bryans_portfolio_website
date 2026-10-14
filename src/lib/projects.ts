@@ -79,10 +79,10 @@ const records: Project[] = [
     slug: "odoo-azure",
     title: "ERP, in the cloud.",
     summary:
-      "Configuring and deploying Odoo ERP on Microsoft Azure, with database setup and system maintenance.",
+      "Deployed Odoo ERP on Microsoft Azure (AKS), balancing VM and database sizing with cost and resource utilisation, and monitoring with Prometheus and Grafana.",
     category: "Cloud & enterprise",
-    role: "School project contributor",
-    technologies: ["Odoo ERP", "Microsoft Azure", "AKS", "Databases"],
+    role: "ERP deployment, infrastructure & monitoring",
+    technologies: ["Odoo ERP", "Microsoft Azure", "AKS", "Prometheus", "Grafana"],
     status: "Supporting project",
     featured: true,
     visible: true,
@@ -91,9 +91,13 @@ const records: Project[] = [
     coverAlt:
       "Conceptual illustration of Odoo ERP, Azure infrastructure, and a connected database; not a project screenshot.",
     contributions: [
-      "Configured and deployed an Odoo ERP system on Azure, including VM setup, database configuration, and maintenance, as described in my résumé.",
+      "Configured and deployed an Odoo ERP system on Microsoft Azure using Azure Kubernetes Service (AKS).",
+      "Selected and set up a suitable Azure virtual machine based on workload requirements and cost.",
+      "Configured database sizing to balance capacity, resource utilisation, and operating costs.",
+      "Set up monitoring using Prometheus and Grafana to track system health and resource usage.",
+      "Performed system maintenance to support ongoing operation.",
     ],
-    contributionConfirmed: false,
+    contributionConfirmed: true,
   },
 ];
 
